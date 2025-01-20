@@ -14,16 +14,13 @@
             prefWidth="1000" prefHeight="600"
             style="-fx-background-color: white;">
 
-    <!-- Main Content Area -->
     <VBox spacing="20" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" AnchorPane.rightAnchor="320.0"
           AnchorPane.bottomAnchor="20.0">
 
-        <!-- Title and Actions -->
         <HBox spacing="10" alignment="CENTER_LEFT">
             <Label text="Gestion des Utilisateurs" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
         </HBox>
 
-        <!-- Buttons -->
         <HBox spacing="10">
             <Button text="Ajouter" fx:id="saveButton" onAction="#handleSave"
                     style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold;"
@@ -36,7 +33,6 @@
                     prefWidth="100"/>
         </HBox>
 
-        <!-- Users Table -->
         <TableView fx:id="usersTable" VBox.vgrow="ALWAYS" style="-fx-border-color: #E0E0E0;">
             <columns>
                 <TableColumn text="Email" fx:id="emailCol" prefWidth="200"/>
@@ -50,13 +46,11 @@
             </columnResizePolicy>
         </TableView>
 
-        <!-- Statistics Box -->
         <VBox fx:id="statsBox" spacing="5" style="-fx-background-color: #F5F5F5; -fx-padding: 10;">
             <Label text="Statistiques" style="-fx-font-weight: bold;"/>
         </VBox>
     </VBox>
 
-    <!-- User Details Form -->
     <VBox spacing="15" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0"
           style="-fx-background-color: #F5F5F5; -fx-padding: 20;" prefWidth="280">
 

@@ -1,5 +1,6 @@
 package controller;
 
+import dao.ReservationDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -143,6 +144,35 @@ public class GestionUsersController implements Initializable {
         selectedUser = null;
         usersTable.getSelectionModel().clearSelection();
     }
+    @FXML
+    public void handleDelete() {
+        User selectedUser = usersTable.getSelectionModel().getSelectedItem();
+        if (selectedUser == null) {
+            showAlert("Erreur", "Veuillez sélectionner un utilisateur à supprimer.");
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Supprimer l'utilisateur");
+        alert.setContentText("Attention: La suppression de cet utilisateur supprimera également toutes ses réservations. Voulez-vous continuer ?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                ReservationDAO reservationDAO = new ReservationDAO();
+                reservationDAO.deleteAllForUser(selectedUser.getId());
+
+                userDAO.delete(selectedUser.getId());
+
+                loadUsers();
+                updateStats();
+                showAlert("Succès", "Utilisateur et ses réservations supprimés avec succès.");
+            } catch (SQLException e) {
+                showAlert("Erreur", "Erreur lors de la suppression: " + e.getMessage());
+            }
+        }
+    }
 
     private void handleDelete(User user) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -176,7 +206,6 @@ public class GestionUsersController implements Initializable {
     private void updateStats() {
         try {
             statsBox.getChildren().clear();
-            // Only show stats for USER and ADMIN roles
             String[] roles = {"ADMIN", "USER"};
             for (String role : roles) {
                 int count = userDAO.countByRole(role);

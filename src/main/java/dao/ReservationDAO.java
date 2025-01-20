@@ -29,7 +29,6 @@ public class ReservationDAO {
                 }
             }
 
-            // Add success message here
             System.out.println("Reservation created successfully with ID: " + reservation.getId());
         }
     }
@@ -74,6 +73,7 @@ public class ReservationDAO {
             while (rs.next()) {
                 reservations.add(mapReservationFromResultSet(rs));
             }
+            System.out.println(rs.next());
         }
         return reservations;
     }
@@ -92,9 +92,11 @@ public class ReservationDAO {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                System.out.println(rs.next());
+
                 reservations.add(mapReservationFromResultSet(rs));
+
             }
+            System.out.println(rs.next());
 
         }
         return reservations;
@@ -181,5 +183,14 @@ public class ReservationDAO {
         reservation.setTable("Table " + rs.getInt("table_numero"));
 
         return reservation;
+    }
+
+    public void deleteAllForUser(int userId) throws SQLException {
+        String sql = "DELETE FROM reservations WHERE user_id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            pstmt.executeUpdate();
+        }
     }
 }

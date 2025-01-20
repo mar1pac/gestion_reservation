@@ -175,6 +175,7 @@ public class ReservationController implements Initializable {
         }
     }
 
+
     @FXML
     private void handleAnnuler() {
         selectedReservation = null;
@@ -220,6 +221,11 @@ public class ReservationController implements Initializable {
                 showError("Erreur", "Impossible de charger la réservation:\n" + e.getMessage());
             }
         }
+    }
+    @FXML
+    private void handleClose() {
+        Stage stage = (Stage) datePicker.getScene().getWindow();
+        stage.close();
     }
 
 

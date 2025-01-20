@@ -11,7 +11,7 @@ public class UserDAO {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, user.getEmail());
-            pstmt.setString(2, user.getPassword()); // TODO: Implement password hashing
+            pstmt.setString(2, user.getPassword());
             pstmt.setString(3, user.getRole());
             pstmt.setString(4, user.getNom());
             pstmt.setString(5, user.getPrenom());
