@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.ReservationController"
+      styleClass="reservation-container">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <VBox spacing="20" styleClass="form-section">
+        <Label text="Gestion des Réservations" styleClass="header-label"/>
+
+        <GridPane vgap="10" hgap="15" styleClass="form-grid">
+            <Label text="Date :"
+                   styleClass="form-label"
+                   GridPane.rowIndex="0"
+                   GridPane.columnIndex="0"/>
+            <DatePicker fx:id="datePicker"
+                        promptText="Sélectionnez une date"
+                        GridPane.rowIndex="0"
+                        GridPane.columnIndex="1"/>
+
+            <Label text="Heure :"
+                   styleClass="form-label"
+                   GridPane.rowIndex="1"
+                   GridPane.columnIndex="0"/>
+            <ComboBox fx:id="heureComboBox"
+                      promptText="Choisissez l'heure"
+                      GridPane.rowIndex="1"
+                      GridPane.columnIndex="1"/>
+
+            <Label text="Nombre de personnes :"
+                   styleClass="form-label"
+                   GridPane.rowIndex="2"
+                   GridPane.columnIndex="0"/>
+            <Spinner fx:id="nombrePersonnesSpinner"
+                     min="1"
+                     max="10"
+                     initialValue="2"
+                     editable="true"
+                     GridPane.rowIndex="2"
+                     GridPane.columnIndex="1"/>
+
+            <Label text="Table disponible :"
+                   styleClass="form-label"
+                   GridPane.rowIndex="3"
+                   GridPane.columnIndex="0"/>
+            <ComboBox fx:id="tableComboBox"
+                      promptText="Sélectionnez une table"
+                      GridPane.rowIndex="3"
+                      GridPane.columnIndex="1"/>
+
+            <!-- Special Requests -->
+            <Label text="Demandes spéciales :"
+                   styleClass="form-label"
+                   GridPane.rowIndex="4"
+                   GridPane.columnIndex="0"/>
+            <TextArea fx:id="specialRequestsArea"
+                      promptText="Entrez vos demandes spéciales ici"
+                      wrapText="true"
+                      maxHeight="60"
+                      GridPane.rowIndex="4"
+                      GridPane.columnIndex="1"/>
+        </GridPane>
+
+        <Text fx:id="statusMessage"
+              styleClass="status-message"
+              visible="false"/>
+
+        <HBox spacing="10"
+              alignment="CENTER_RIGHT"
+              styleClass="button-container">
+            <Button text="Annuler"
+                    onAction="#handleAnnuler"
+                    styleClass="cancel-button"/>
+            <Button text="Supprimer"
+                    onAction="#handleSupprimer"
+                    styleClass="delete-button"/>
+            <Button text="Confirmer"
+                    onAction="#handleConfirmer"
+                    styleClass="confirm-button"/>
+        </HBox>
+    </VBox>
+
+    <VBox spacing="10" styleClass="table-section">
+        <Label text="Réservations du jour" styleClass="section-label"/>
+
+        <TableView fx:id="reservationsTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="dateHeureCol" text="Date/Heure" prefWidth="150"/>
+                <TableColumn fx:id="clientCol" text="Client" prefWidth="200"/>
+                <TableColumn fx:id="tableCol" text="Table" prefWidth="100"/>
+                <TableColumn fx:id="personnesCol" text="Personnes" prefWidth="100"/>
+                <TableColumn fx:id="statutCol" text="Statut" prefWidth="100"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+
+    </VBox>
+
+</VBox>

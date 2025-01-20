@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="20" styleClass="login-container"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.LoginController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Connexion" styleClass="title-label"/>
+
+    <GridPane vgap="10" hgap="10">
+        <Label text="Email:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="emailField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Mot de passe:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <PasswordField fx:id="passwordField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <VBox spacing="10">
+        <Button text="Se connecter" onAction="#handleLogin" styleClass="login-button"/>
+        <Button text="Créer un compte" onAction="#handleCreateAccount" styleClass="create-account-button"/>
+    </VBox>
+</VBox>

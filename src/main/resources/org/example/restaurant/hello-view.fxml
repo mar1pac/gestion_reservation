@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.Button?>
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            >
+
+  <VBox spacing="10" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" AnchorPane.rightAnchor="400.0">
+    <HBox spacing="10">
+      <Button text="Ajouter" fx:id="saveButton" />
+      <Button text="Effacer" fx:id="clearButton" />
+    </HBox>
+
+    <TableView fx:id="usersTable">
+      <columns>
+        <TableColumn text="Email" fx:id="emailCol"/>
+        <TableColumn text="Nom" fx:id="nomCol"/>
+        <TableColumn text="Prénom" fx:id="prenomCol"/>
+        <TableColumn text="Rôle" fx:id="roleCol"/>
+        <TableColumn text="Actions" fx:id="actionsCol"/>
+      </columns>
+    </TableView>
+  </VBox>
+  <VBox fx:id="statsBox" spacing="5" />
+
+  <VBox spacing="10" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+    <Text text="Détails de l'Utilisateur"/>
+
+    <TextField fx:id="emailField" promptText="Email"/>
+    <TextField fx:id="nomField" promptText="Nom"/>
+    <TextField fx:id="prenomField" promptText="Prénom"/>
+    <PasswordField fx:id="passwordField" promptText="Mot de passe"/>
+    <ComboBox fx:id="roleComboBox" promptText="Rôle"/>
+  </VBox>
+
+</AnchorPane>
