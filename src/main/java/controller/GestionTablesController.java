@@ -152,22 +152,7 @@ public class GestionTablesController {
         }
     }
 
-    private void refreshTableData(int tableId) {
-        try {
-            Table refreshedTable = tableDAO.findById(tableId);
-            if (refreshedTable != null) {
-                ObservableList<Table> items = tablesTable.getItems();
-                for (int i = 0; i < items.size(); i++) {
-                    if (items.get(i).getId() == tableId) {
-                        items.set(i, refreshedTable);
-                        break;
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            showError("Erreur lors du rafraîchissement des données de la table", e);
-        }
-    }
+
 
     @FXML
     private void handleSave() {

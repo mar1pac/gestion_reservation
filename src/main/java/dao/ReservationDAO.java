@@ -51,7 +51,7 @@ public class ReservationDAO {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                System.out.println(rs.next());
+
                 return mapReservationFromResultSet(rs);
             }
         }
@@ -73,7 +73,7 @@ public class ReservationDAO {
             while (rs.next()) {
                 reservations.add(mapReservationFromResultSet(rs));
             }
-            System.out.println(rs.next());
+
         }
         return reservations;
     }
@@ -96,7 +96,7 @@ public class ReservationDAO {
                 reservations.add(mapReservationFromResultSet(rs));
 
             }
-            System.out.println(rs.next());
+
 
         }
         return reservations;

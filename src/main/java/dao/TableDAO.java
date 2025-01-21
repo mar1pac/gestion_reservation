@@ -28,10 +28,8 @@ public class TableDAO {
     public Table findById(int id) throws SQLException {
         String sql = "SELECT * FROM tables WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {  // Add ResultSet to try-with-resources
 
             if (rs.next()) {
                 Table table = new Table();
